@@ -21,17 +21,28 @@ function getAllCountries() {
     .then((all) => {
       return all.json();
     })
-    .then(data=> data.forEach((country)=>{
+    .then(data => data.forEach((country)=>{
 
       var $country = country.country;
       document.getElementById("Countries").innerHTML +=
-      '<div class="a1" id="a1">' +
+      '<div class="style" id="'+$country+'">' +
       '<h2>' + $country +'</h2>'+
-      '<p> Total de casos : '+country.cases+'</p>'+
-      '<p> Total de muertes : '+country.deaths+'</p>'+
-      '<p> Total de recuperados : '+country.recovered+'</p>'+
+      '<p> <span>Total de casos</span> : '+new Intl.NumberFormat().format(country.cases)+'</p>'+
+      '<p> <span>Total de muertes</span> : '+new Intl.NumberFormat().format(country.deaths)+'</p>'+
+      '<p> <span>Total de recuperados</span> : '+new Intl.NumberFormat().format(country.recovered)+'</p>'+
       '</div>';
 
+      getFlag($country).then((data)=>{
+        if($country === 'World'){
+          document.getElementById($country).innerHTML += 
+        '<img src="'+'https://3.bp.blogspot.com/-HAHIYkwxoqc/UkHfRet_AgI/AAAAAAAADF8/JSkVDcTNlJE/s1600/banderas+mundo.png'+'">';
+        }
+        else{
+          document.getElementById($country).innerHTML += 
+        '<img src="'+data+'">';
+        } 
+      })
+      
     }))
     .catch((error) => {
       console.log("Algo ha salido mal " + error);
@@ -39,13 +50,12 @@ function getAllCountries() {
 }
 
 function getFlag(country) {
-  return fetch("https://restcountries.eu/rest/v2/name/" + country)
+  return fetch("https://restcountries.eu/rest/v2/name/"+country)
     .then(($country) => {
       return $country.json();
     })
     .then((data)=>{
-      document.getElementById("a1").innerHTML +=
-      '<img src='+data[0].flag+'>';
+        return data[0].flag;
     })
     .catch((error) => {
       console.log("Algo ha salido mal " + error);
