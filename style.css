@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+h3,
+p {
+  font-weight: 300;
+}
+.container {
+  height: 100vh;
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: "Total Total Total Total" "Search Search Search Search" "Content Content Content Content";
+}
+
+.total {
+  background-color: #34495e;
+  color: white;
+  text-shadow: 2px 2px #083c70;
+  grid-area: Total;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.totalCases {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+.totalDeaths {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+.totalRecovered {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+.search {
+  grid-area: Search;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  grid-area: Content;
+}
+
+input {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #2c3e50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  transition: 0.2s ease-out;
+}
+input:focus {
+  color: black;
+  border-bottom: 3px solid #4f7aa5;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.byCountry {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 55vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.contentCountry {
+  margin: 4vh 4vh 4vh 4vh;
+  height: 57vh;
+  width: 50%;
+  background-color:#7f8c8d;
+  display: none;
+}
+.header {
+  background-color: rgb(163, 176, 252);
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.info {
+  padding: 20px;
+}
+.a1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(350deg, #f3eff0 0, #eaeaea 50%, #e1e5e4 100%);
+  height: 55vh;
+  width: 32%;
+}
+img{
+  width: 30px;
+  height: 30px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 17px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #d3d4da;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #083c70;;
+  border-radius: 50%;
+}
+h2{
+  margin-bottom: 20px;
+}
