@@ -59,6 +59,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 25px;
 }
 
 .content {
@@ -162,3 +163,11 @@ span{
   color: #083c70;;
 }
 
+@media screen and (max-width: 768px){
+	.total {
+		grid-template-areas: "TotalC" "TotalD" "TotalR";
+  }
+  .totalCases,.totalDeaths , .totalRecovered{
+    grid-column: span 3;
+  }
+}
