@@ -112,7 +112,7 @@ input:focus {
   align-items: center;
   flex-direction: column;
   margin: -25px;
-  padding-top: 90px;
+  padding : 5%;
 }
 .style{
   display: flex;
