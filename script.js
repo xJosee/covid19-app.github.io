@@ -12,7 +12,7 @@ searchbox.addEventListener("keypress", getCountryName);
 searchbox.addEventListener("keyup", function () {
   if (searchbox.value === "") {
     document.querySelector(".contentCountry").style.display = "none";
-    document.querySelector(".byCountry").style.display = "flex";
+    document.querySelector(".byCountry").style.display = "grid";
   }
 });
 
