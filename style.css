@@ -168,9 +168,3 @@ span{
     grid-template-columns: 1fr;
   }
 }
-
-@media screen and (max-width: 868px){
-  .byCountry {
-    grid-template-columns: repeat(2,1fr);
-  }
-}
