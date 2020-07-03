@@ -15,7 +15,7 @@ p {
   height: 100vh;
   display: grid;
   padding : 20px;
-  grid-template-rows: 15% 20% 65%;
+  grid-template-rows: repeat(3,1fr);
   grid-template-columns: 1fr;
   grid-template-areas: "Total" "Search" "Content";
 }
@@ -112,8 +112,7 @@ input:focus {
   align-items: center;
   flex-direction: column;
   margin: -25px;
-  padding : 50px;
-  padding-top: 110px;
+  padding-top: 90px;
 }
 .style{
   display: flex;
