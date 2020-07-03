@@ -15,9 +15,9 @@ p {
   height: 100vh;
   display: grid;
   padding: 20px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "Total Total Total Total" "Search Search Search Search" "Content Content Content Content";
+  grid-template-rows: repeat(3,1fr);
+  grid-template-columns: 1fr;
+  grid-template-areas: "Total" "Search" "Content";
 }
 
 .total {
@@ -26,24 +26,33 @@ p {
   color: white;
   text-shadow: 2px 2px #083c70;
   grid-area: Total;
-  display: flex;
-  text-align: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "TotalC TotalD TotalR";
 }
 .totalCases {
-  display: block;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
   text-align: center;
-  margin: auto;
+  flex-direction: column;
+  grid-area: TotalC;
 }
 .totalDeaths {
-  display: block;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
   text-align: center;
-  margin: auto;
+  flex-direction: column;
+  grid-area: TotalD;
 }
 .totalRecovered {
-  display: block;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
   text-align: center;
-  margin: auto;
+  flex-direction: column;
+  grid-area: TotalR;
 }
 .search {
   grid-area: Search;
@@ -152,3 +161,4 @@ span{
   font-weight: 400;
   color: #083c70;;
 }
+

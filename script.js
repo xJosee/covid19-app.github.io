@@ -42,7 +42,6 @@ function getAllCountries() {
         '<img src="'+data+'">';
         } 
       })
-      
     }))
     .catch((error) => {
       console.log("Algo ha salido mal " + error);
@@ -96,6 +95,7 @@ function getByCountry(country) {
 }
 
 function renderTotalCountry(totalCountry) {
+
   document.querySelector(".contentCountry").style.display = "block";
   document.querySelector(".byCountry").style.display = "none";
   document.querySelector(".CountryName").innerText = totalCountry.country;
