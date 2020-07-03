@@ -14,8 +14,8 @@ p {
 .container {
   height: 100vh;
   display: grid;
-  padding: 20px;
-  grid-template-rows: repeat(3,1fr);
+  padding : 20px;
+  grid-template-rows: 15% 20% 65%;
   grid-template-columns: 1fr;
   grid-template-areas: "Total" "Search" "Content";
 }
@@ -113,7 +113,7 @@ input:focus {
   flex-direction: column;
   margin: -25px;
   padding : 50px;
-  padding-top: 70px;
+  padding-top: 110px;
 }
 .style{
   display: flex;
