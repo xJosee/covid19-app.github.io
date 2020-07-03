@@ -25,7 +25,8 @@ function getAllCountries() {
 
       var $country = country.country;
       document.getElementById("Countries").innerHTML +=
-      '<div class="style" id="'+$country+'">' +
+      '<div class="style">' +
+      '<img src="" id="'+$country+'">'+
       '<h2>' + $country +'</h2>'+
       '<p> <span>Total de casos</span> : '+new Intl.NumberFormat().format(country.cases)+'</p>'+
       '<p> <span>Total de muertes</span> : '+new Intl.NumberFormat().format(country.deaths)+'</p>'+
@@ -34,12 +35,10 @@ function getAllCountries() {
 
       getFlag($country).then((data)=>{
         if($country === 'World'){
-          document.getElementById($country).innerHTML += 
-        '<img src="'+'https://3.bp.blogspot.com/-HAHIYkwxoqc/UkHfRet_AgI/AAAAAAAADF8/JSkVDcTNlJE/s1600/banderas+mundo.png'+'">';
+          document.getElementById($country).src = 'https://3.bp.blogspot.com/-HAHIYkwxoqc/UkHfRet_AgI/AAAAAAAADF8/JSkVDcTNlJE/s1600/banderas+mundo.png';
         }
         else{
-          document.getElementById($country).innerHTML += 
-        '<img src="'+data+'">';
+          document.getElementById($country).src = data;
         } 
       })
     }))

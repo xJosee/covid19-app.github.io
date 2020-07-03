@@ -120,7 +120,7 @@ input:focus {
   transition: 0.7s;
 }
 img{
-  margin-top: 20px;
+  margin-bottom: 20px;
   width: 150px;
   height: 100px;
 }
@@ -135,7 +135,7 @@ img{
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb { 
   background: #083c70;
   border-radius: 50%;
 }
