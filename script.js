@@ -2,6 +2,10 @@ const totalCases = document.getElementById("_totalCases");
 const totalDeaths = document.getElementById("_totalDeaths");
 const totalRecovered = document.getElementById("_totalRecovered");
 
+$(window).on("load",function(){
+  $(".loader-wrapper").fadeOut("slow");
+});
+
 window.onload = function () {
   getAllCountries();
   getTotalCases();
