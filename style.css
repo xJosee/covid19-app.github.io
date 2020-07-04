@@ -91,7 +91,7 @@ input:focus {
   justify-content: center;
   flex-direction: column;
   grid-area: Header;
-  padding : 30px;
+  padding : 50px 0;
 }
 .info {
   height: 50%;
@@ -100,7 +100,7 @@ input:focus {
   justify-content: center;
   flex-direction: column;
   grid-area: Info;
-  padding : 50px;
+  padding : 50px 0;
 }
 .style{
   display: flex;
