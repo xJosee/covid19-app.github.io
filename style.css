@@ -15,12 +15,13 @@ p {
   height: 100vh;
   display: grid;
   padding : 20px;
-  grid-template-rows: 25% 20% 55%;
+  grid-template-rows: repeat( auto-fit, minmax(1fr, 50%));
   grid-template-columns: 1fr;
   grid-template-areas: "Total" "Search" "Content";
 }
 
 .total {
+  padding: 25px;
   font-size: 20px;
   background-color: #34495e;
   color: white;
@@ -41,7 +42,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 25px;
+  margin: 30px 0;
 }
 
 .content {
