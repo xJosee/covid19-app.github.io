@@ -27,33 +27,16 @@ p {
   text-shadow: 2px 2px #083c70;
   grid-area: Total;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "TotalC TotalD TotalR";
+  grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
 }
-.totalCases {
-  margin: 20px;
+.totalCases,.totalDeaths,.totalRecovered {
+  padding : 35px;
   display: flex;
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  grid-area: TotalC;
 }
-.totalDeaths {
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  grid-area: TotalD;
-}
-.totalRecovered {
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  grid-area: TotalR;
-}
+
 .search {
   grid-area: Search;
   display: flex;
@@ -87,7 +70,7 @@ input:focus {
 .byCountry {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(3,auto);
+  grid-template-columns: repeat( auto-fit, minmax(360px, 1fr) );
 }
 .contentCountry {
   display: block;
@@ -165,14 +148,4 @@ span{
   color: #083c70;;
 }
 
-@media screen and (max-width: 768px){
-	.total {
-		grid-template-areas: "TotalC" "TotalD" "TotalR";
-  }
-  .totalCases,.totalDeaths , .totalRecovered{
-    grid-column: span 3;
-  }
-  .byCountry {
-    grid-template-columns: 1fr;
-  }
-}
+
