@@ -8,7 +8,7 @@ $(window).on("load",function(){
 
 window.onload = function () {
   getAllCountries();
-  getTotalCases();
+  getTotalCases(); 
 };
 
 const searchbox = document.querySelector(".search-box");
