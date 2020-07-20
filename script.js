@@ -2,10 +2,6 @@ const totalCases = document.getElementById("_totalCases");
 const totalDeaths = document.getElementById("_totalDeaths");
 const totalRecovered = document.getElementById("_totalRecovered");
 
-$(window).on("load",function(){
-  $(".loader-wrapper").fadeOut("slow");
-});
-
 window.onload = function () {
   getAllCountries();
   getTotalCases(); 
@@ -44,11 +40,16 @@ function getAllCountries() {
         else{
           document.getElementById($country).src = data;
         } 
+
       })
+
+      document.querySelector('.loader-wrapper').style.display = 'none';
     }))
     .catch((error) => {
       console.log("Algo ha salido mal " + error);
     });
+
+    
 }
 
 function getFlag(country) {
