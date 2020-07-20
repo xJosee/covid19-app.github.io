@@ -168,6 +168,9 @@ span {
 .loader-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   position: absolute;
