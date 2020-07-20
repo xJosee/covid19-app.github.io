@@ -4,7 +4,7 @@ const totalRecovered = document.getElementById("_totalRecovered");
 
 window.onload = function () {
   getAllCountries();
-  getTotalCases(); 
+  getTotalCases();
 };
 
 const searchbox = document.querySelector(".search-box");
@@ -17,54 +17,76 @@ searchbox.addEventListener("keyup", function () {
 });
 
 function getAllCountries() {
-  fetch("https://coronavirus-19-api.herokuapp.com/countries")
+  var uri = "https://coronavirus-19-api.herokuapp.com/countries";
+
+  fetch(uri)
     .then((all) => {
       return all.json();
     })
-    .then(data => data.forEach((country)=>{
+    .then((data) =>
+      data.forEach((country) => {
+        //Create components with a country information
+        createComponents(country);
 
-      var $country = country.country;
-      document.getElementById("Countries").innerHTML +=
-      '<div class="style">' +
-      '<img src="" id="'+$country+'">'+
-      '<h2>' + $country +'</h2>'+
-      '<p> <span>Total de casos</span> : '+new Intl.NumberFormat().format(country.cases)+'</p>'+
-      '<p> <span>Total de muertes</span> : '+new Intl.NumberFormat().format(country.deaths)+'</p>'+
-      '<p> <span>Total de recuperados</span> : '+new Intl.NumberFormat().format(country.recovered)+'</p>'+
-      '</div>';
+        //Asign an image to each country component
+        assignFlag(country.country);
 
-      getFlag($country).then((data)=>{
-        if($country === 'World'){
-          document.getElementById($country).src = 'https://3.bp.blogspot.com/-HAHIYkwxoqc/UkHfRet_AgI/AAAAAAAADF8/JSkVDcTNlJE/s1600/banderas+mundo.png';
-        }
-        else{
-          document.getElementById($country).src = data;
-        } 
-
+        //Hiding the loading page
+        document.querySelector(".loader-wrapper").style.display = "none";
       })
-
-      document.querySelector('.loader-wrapper').style.display = 'none';
-    }))
+    )
     .catch((error) => {
       console.log("Algo ha salido mal " + error);
     });
-
-    
 }
 
-function getFlag(country) {
-  return fetch("https://restcountries.eu/rest/v2/name/"+country)
+function assignFlag(contrieName) {
+  getFlag(contrieName).then((imageFlag) => {
+    if (contrieName === "World") {
+      document.getElementById(name).src =
+        "https://3.bp.blogspot.com/-HAHIYkwxoqc/UkHfRet_AgI/AAAAAAAADF8/JSkVDcTNlJE/s1600/banderas+mundo.png";
+    } else {
+      document.getElementById(name).src = imageFlag;
+    }
+  });
+}
+
+function createComponents(country) {
+  document.getElementById("Countries").innerHTML +=
+    '<div class="style">' +
+    '<img src="" id="' +
+    country.country +
+    '">' +
+    "<h2>" +
+    country.country +
+    "</h2>" +
+    "<p> <span>Total de casos</span> : " +
+    new Intl.NumberFormat().format(country.cases) +
+    "</p>" +
+    "<p> <span>Total de muertes</span> : " +
+    new Intl.NumberFormat().format(country.deaths) +
+    "</p>" +
+    "<p> <span>Total de recuperados</span> : " +
+    new Intl.NumberFormat().format(country.recovered) +
+    "</p>" +
+    "</div>";
+}
+
+function getFlag(countryName) {
+
+  var uri = 'https://restcountries.eu/rest/v2/name/';
+
+  return fetch(uri+countryName)
     .then(($country) => {
       return $country.json();
     })
-    .then((data)=>{
-        return data[0].flag;
+    .then((data) => {
+      return data[0].flag;
     })
     .catch((error) => {
       console.log("Algo ha salido mal " + error);
     });
 }
-
 
 function getCountryName(event) {
   if (event.keyCode == 13) {
@@ -73,7 +95,10 @@ function getCountryName(event) {
 }
 
 function getTotalCases() {
-  fetch(" https://coronavirus-19-api.herokuapp.com/all")
+
+  var uri = 'https://coronavirus-19-api.herokuapp.com/all';
+
+  fetch(uri)
     .then((total) => {
       return total.json();
     })
@@ -99,7 +124,6 @@ function getByCountry(country) {
 }
 
 function renderTotalCountry(totalCountry) {
-
   document.querySelector(".contentCountry").style.display = "block";
   document.querySelector(".byCountry").style.display = "none";
   document.querySelector(".CountryName").innerText = totalCountry.country;
