@@ -133,7 +133,7 @@ function getByCountry(country) {
 }
 
 function renderTotalCountry(totalCountry) {
-  document.querySelector(".contentCountry").style.display = "block";
+  document.querySelector(".contentCountry").style.display = "flex";
   document.querySelector(".byCountry").style.display = "none";
   document.querySelector(".CountryName").innerText = totalCountry.country;
   document.querySelector(".TotalCases").innerText =

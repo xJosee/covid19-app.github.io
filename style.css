@@ -21,7 +21,7 @@ p {
 }
 
 .total {
-  padding : 30px 0;
+  padding: 30px 0;
   font-size: 20px;
   background-color: #34495e;
   color: white;
@@ -76,37 +76,21 @@ input:focus {
   grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
 }
 .contentCountry {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-areas: "Header" "Info";
-
-  background-image: linear-gradient(
-    350deg,
-    #f3eff0 0,
-    #eaeaea 50%,
-    #e1e5e4 100%
-  );
+  background-color: green;
+  flex-direction: column;
   display: none;
 }
 .header {
   background-color: rgb(209, 204, 209);
   height: 50%;
-  display: flex;
+  padding: 50px;
   text-align: center;
-  justify-content: center;
-  flex-direction: column;
-  grid-area: Header;
-  padding: 50px 0;
 }
 .info {
+  background-color: rgb(201, 201, 201);
   height: 50%;
-  display: flex;
+  padding : 50px;
   text-align: center;
-  justify-content: center;
-  flex-direction: column;
-  grid-area: Info;
-  padding: 50px 0;
 }
 .style {
   display: flex;
@@ -121,7 +105,6 @@ input:focus {
     #eaeaea 50%,
     #e1e5e4 100%
   );
-
 }
 .style:hover {
   color: #083c70;
@@ -132,21 +115,7 @@ input:focus {
   width: 150px;
   height: 100px;
 }
-/* width */
-::-webkit-scrollbar {
-  width: 17px;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-  background-color: #d3d4da;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #083c70;
-  border-radius: 50%;
-}
 h2 {
   border-bottom: 3px solid #2c3e50;
   font-weight: 900;
@@ -177,9 +146,6 @@ span {
   top: 0;
   left: 0;
   background-color: #242f3f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .loader {
   margin: 20px;
@@ -187,7 +153,7 @@ span {
   position: relative;
   animation: loader 2.5s infinite ease;
 }
-.title-loader{
+.title-loader {
   text-transform: uppercase;
   letter-spacing: 3px;
   color: white;
@@ -208,23 +174,6 @@ span {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-@keyframes loader-inner {
-  0% {
-    height: 0%;
-  }
-  25% {
-    height: 0%;
-  }
-  50% {
-    height: 100%;
-  }
-  75% {
-    height: 100%;
-  }
-  100% {
-    height: 0%;
   }
 }
 
