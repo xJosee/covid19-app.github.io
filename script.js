@@ -16,6 +16,14 @@ searchbox.addEventListener("keyup", function () {
 });
 
 /* 
+ * @Purpose : formatting a comma-separated number
+ * @param : a number
+*/
+function formatNumber(number){
+  return new Intl.NumberFormat().format(number);
+}
+
+/* 
  * @Purpose : get all countries
 */
 function getAllCountries() {
@@ -96,15 +104,15 @@ function createComponents(country) {
 
   //Creating a paragraph that contains the total cases number
   var totalCasesElement = document.createElement('p');
-  totalCasesElement.innerText = `Total de casos : ${country.cases}`;
+  totalCasesElement.innerText = `Total de casos : ${formatNumber(country.cases)}`;
   
   //Creating a paragraph that contains the total deaths number
   var totalDeathsElement = document.createElement('p');
-  totalDeathsElement.innerText = `Total de muertes : ${country.deaths}`;
+  totalDeathsElement.innerText = `Total de muertes : ${formatNumber(country.deaths)}`;
 
   //Creating a paragraph that contains the total recovered number
   var totalRecoveredElement = document.createElement('p');
-  totalRecoveredElement.innerText = `Total de recuperados : ${country.recovered}`;
+  totalRecoveredElement.innerText = `Total de recuperados : ${formatNumber(country.recovered)}`;
   
   //Adding the div to the father div
   document.getElementById("Countries").appendChild(div);
@@ -154,9 +162,9 @@ function renderTotal(total) {
   var totalDeathsElement = document.getElementById("_totalDeaths");
   var totalRecoveredElement = document.getElementById("_totalRecovered");
 
-  totalCasesElement.innerText = new Intl.NumberFormat().format(total.cases);
-  totalDeathsElement.innerText = new Intl.NumberFormat().format(total.deaths);
-  totalRecoveredElement.innerText = new Intl.NumberFormat().format(total.recovered);
+  totalCasesElement.innerText = formatNumber(total.cases);
+  totalDeathsElement.innerText = formatNumber(total.deaths);
+  totalRecoveredElement.innerText = formatNumber(total.recovered);
 }
 
 /*@Purpose : get the information to the specific country
@@ -193,25 +201,25 @@ function renderTotalCountry(country) {
   countryNameElement.innerText = country.country;
 
   var totalCasesElement = document.createElement('h3');
-  totalCasesElement.innerText = `Total de casos : ${country.cases}`;
+  totalCasesElement.innerText = `Total de casos : ${formatNumber(country.cases)}`;
 
   var totalDeathsElement = document.createElement('h3');
-  totalDeathsElement.innerText = `Total de muertes : ${country.deaths}`;
+  totalDeathsElement.innerText = `Total de muertes : ${formatNumber(country.deaths)}`;
 
   var totalRecoveredElement = document.createElement('h3');
-  totalRecoveredElement.innerText = `Total de recuperados : ${country.recovered}`;
+  totalRecoveredElement.innerText = `Total de recuperados : ${formatNumber(country.recovered)}`;
 
   var totalActiveCasesElement = document.createElement('h3');
-  totalActiveCasesElement.innerText = `Total de casos activos : ${country.active}`;
+  totalActiveCasesElement.innerText = `Total de casos activos : ${formatNumber(country.active)}`;
 
   var todayCasesElement = document.createElement('h3');
-  todayCasesElement.innerText = `Total de casos de hoy : ${country.todayCases}`;
+  todayCasesElement.innerText = `Total de casos de hoy : ${formatNumber(country.todayCases)}`;
 
   var todayDeathsElement = document.createElement('h3');
-  todayDeathsElement.innerText = `Total de muertes de hoy : ${country.todayDeaths}`;
+  todayDeathsElement.innerText = `Total de muertes de hoy : ${formatNumber(country.todayDeaths)}`;
 
   var CriticalElement = document.createElement('h3');
-  CriticalElement.innerText = `Pacientes en estado critico : ${country.critical}`;
+  CriticalElement.innerText = `Pacientes en estado critico : ${formatNumber(country.critical)}`;
 
   //adding the elements in the header element(div)
   headerSpecificCountryDiv.appendChild(countryNameElement);
