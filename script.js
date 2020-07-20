@@ -1,4 +1,3 @@
-
 window.onload = function () {
   getAllCountries();
   getTotalCases();
@@ -15,17 +14,17 @@ searchbox.addEventListener("keyup", function () {
   }
 });
 
-/* 
+/*
  * @Purpose : formatting a comma-separated number
  * @param : a number
-*/
-function formatNumber(number){
+ */
+function formatNumber(number) {
   return new Intl.NumberFormat().format(number);
 }
 
-/* 
+/*
  * @Purpose : get all countries
-*/
+ */
 function getAllCountries() {
   var uri = "https://coronavirus-19-api.herokuapp.com/countries";
 
@@ -34,7 +33,7 @@ function getAllCountries() {
       return allCountries.json();
     })
     .then((countries) =>
-    countries.forEach((country) => {
+      countries.forEach((country) => {
         //Create components with a country information
         createComponents(country);
 
@@ -46,17 +45,17 @@ function getAllCountries() {
       })
     )
     .catch(() => {
-      var messageError = 'Error when trying to get the information from all the countries';
+      var messageError =
+        "Error when trying to get the information from all the countries";
       console.log(messageError);
     });
 }
 
 /*@Purpose : get the flag of a specific country
-* @param countryName : name of the country
-* @return : promise that contains the country's flag
-*/
+ * @param countryName : name of the country
+ * @return : promise that contains the country's flag
+ */
 function getFlag(countryName) {
-  
   var uri = `https://restcountries.eu/rest/v2/name/${countryName}`;
 
   return fetch(uri)
@@ -67,14 +66,14 @@ function getFlag(countryName) {
       return data[0].flag;
     })
     .catch((error) => {
-      var messageError = 'Error when trying to get the image';
+      var messageError = "Error when trying to get the image";
       console.log(messageError);
     });
 }
 
 /*@Purpose : get the value of the getFlag() function and assign the image to the country component
-* @param countryName : name of the country
-*/
+ * @param countryName : name of the country
+ */
 function assignFlag(countryName) {
   getFlag(countryName).then((imageFlag) => {
     if (countryName === "World") {
@@ -86,36 +85,40 @@ function assignFlag(countryName) {
 }
 
 /*@Purpose : create a component (div) with the country information
-* @param country : json object with the country information
-*/
+ * @param country : json object with the country information
+ */
 function createComponents(country) {
-
   //Creating a div that contains the information of the country
-  var div = document.createElement('div');
-  div.className = 'style';
+  var div = document.createElement("div");
+  div.className = "style";
   div.id = `container${country.country}`;
 
-
-  //Creating the image 
-  var countryImageElement = document.createElement('img');
+  //Creating the image
+  var countryImageElement = document.createElement("img");
   countryImageElement.id = country.country;
 
   //Creating the title that contains the name of the country
-  var countryNameElement = document.createElement('h2');
+  var countryNameElement = document.createElement("h2");
   countryNameElement.innerHTML = country.country;
 
   //Creating a paragraph that contains the total cases number
-  var totalCasesElement = document.createElement('p');
-  totalCasesElement.innerText = `Total de casos : ${formatNumber(country.cases)}`;
-  
+  var totalCasesElement = document.createElement("p");
+  totalCasesElement.innerText = `Total de casos : ${formatNumber(
+    country.cases
+  )}`;
+
   //Creating a paragraph that contains the total deaths number
-  var totalDeathsElement = document.createElement('p');
-  totalDeathsElement.innerText = `Total de muertes : ${formatNumber(country.deaths)}`;
+  var totalDeathsElement = document.createElement("p");
+  totalDeathsElement.innerText = `Total de muertes : ${formatNumber(
+    country.deaths
+  )}`;
 
   //Creating a paragraph that contains the total recovered number
-  var totalRecoveredElement = document.createElement('p');
-  totalRecoveredElement.innerText = `Total de recuperados : ${formatNumber(country.recovered)}`;
-  
+  var totalRecoveredElement = document.createElement("p");
+  totalRecoveredElement.innerText = `Total de recuperados : ${formatNumber(
+    country.recovered
+  )}`;
+
   //Adding the div to the father div
   document.getElementById("Countries").appendChild(div);
 
@@ -125,26 +128,24 @@ function createComponents(country) {
   div.appendChild(totalCasesElement);
   div.appendChild(totalDeathsElement);
   div.appendChild(totalRecoveredElement);
-
 }
 
 /*@Purpose : call the function that obtains the information of a country getByCountry()
-* @param event : event of the searchbox
-*/
+ * @param event : event of the searchbox
+ */
 function getCountryName(event) {
   if (event.keyCode == 13) {
-    if(searchbox.value !== ''){
+    if (searchbox.value !== "") {
       getByCountry(searchbox.value);
     }
   }
 }
 
 /*
-* @Purpose : get the information of the world 
-*/
+ * @Purpose : get the information of the world
+ */
 function getTotalCases() {
-
-  var uri = 'https://coronavirus-19-api.herokuapp.com/all';
+  var uri = "https://coronavirus-19-api.herokuapp.com/all";
 
   fetch(uri)
     .then((total) => {
@@ -152,15 +153,15 @@ function getTotalCases() {
     })
     .then(renderTotal)
     .catch(() => {
-      var messageError = 'Error when trying to get the information from all the world';
+      var messageError =
+        "Error when trying to get the information from all the world";
       console.log(messageError);
     });
-      
 }
 
 /*@Purpose : rendering the world information on the dom
-* @param total : json Object with the total cases
-*/
+ * @param total : json Object with the total cases
+ */
 function renderTotal(total) {
   var totalCasesElement = document.getElementById("_totalCases");
   var totalDeathsElement = document.getElementById("_totalDeaths");
@@ -172,8 +173,8 @@ function renderTotal(total) {
 }
 
 /*@Purpose : get the information to the specific country
-* @param country : name of the country
-*/
+ * @param country : name of the country
+ */
 function getByCountry(country) {
   var uri = `https://coronavirus-19-api.herokuapp.com/countries/${country}`;
   fetch(uri)
@@ -182,40 +183,58 @@ function getByCountry(country) {
     })
     .then(renderTotalCountry)
     .catch(() => {
-      var messageError = 'Error when trying to get the information to the specific country'
+      var messageError =
+        "Error when trying to get the information to the specific country";
       console.log(messageError);
     });
 }
 
-/*@Purpose : rendering the specific conuntry information on the dom
-* @param total : json Object with the country information
-*/
-function renderTotalCountry(country) {
+/*@Purpose : remove all childs of the element
+ * @param total : element of the dom
+ */
+function deleteChilds(element){
+  if (element.hasChildNodes()) {
+    while (element.childNodes.length >= 1) {
+      element.removeChild(element.firstChild);
+    }
+  }
+}
 
+/*@Purpose : rendering the specific conuntry information on the dom
+ * @param total : json Object with the country information
+ */
+function renderTotalCountry(country) {
   //Showing the element that contains the information of a specific country
   var specificCountryDiv = document.querySelector(".specificCountry");
-  specificCountryDiv.style.display = "flex"
+  deleteChilds(specificCountryDiv);
+  specificCountryDiv.style.display = "flex";
+  
   //Hiding the element that contains all countries
   document.querySelector(".AllCountries").style.display = "none";
 
-  //Creating a div that will contains the header and footer information
-  var countryDiv = document.createElement('div');
-
   //Creating all the elements that contains the country information
-  var footerSpecificCountryElement = document.createElement('div');
-  footerSpecificCountryElement.className = 'footer';
+  var footerSpecificCountryElement = document.createElement("div");
+  footerSpecificCountryElement.className = "footer";
 
-  var totalActiveCasesElement = document.createElement('h3');
-  totalActiveCasesElement.innerText = `Total de casos activos : ${formatNumber(country.active)}`;
+  var totalActiveCasesElement = document.createElement("h3");
+  totalActiveCasesElement.innerText = `Total de casos activos : ${formatNumber(
+    country.active
+  )}`;
 
-  var todayCasesElement = document.createElement('h3');
-  todayCasesElement.innerText = `Total de casos de hoy : ${formatNumber(country.todayCases)}`;
+  var todayCasesElement = document.createElement("h3");
+  todayCasesElement.innerText = `Total de casos de hoy : ${formatNumber(
+    country.todayCases
+  )}`;
 
-  var todayDeathsElement = document.createElement('h3');
-  todayDeathsElement.innerText = `Total de muertes de hoy : ${formatNumber(country.todayDeaths)}`;
+  var todayDeathsElement = document.createElement("h3");
+  todayDeathsElement.innerText = `Total de muertes de hoy : ${formatNumber(
+    country.todayDeaths
+  )}`;
 
-  var CriticalElement = document.createElement('h3');
-  CriticalElement.innerText = `Pacientes en estado critico : ${formatNumber(country.critical)}`;
+  var CriticalElement = document.createElement("h3");
+  CriticalElement.innerText = `Pacientes en estado critico : ${formatNumber(
+    country.critical
+  )}`;
 
   //adding the elements in the footer element(div)
   footerSpecificCountryElement.appendChild(totalActiveCasesElement);
@@ -224,9 +243,16 @@ function renderTotalCountry(country) {
   footerSpecificCountryElement.appendChild(CriticalElement);
 
   //Adding the information to the father div
-  var headerSpecificCountryElement = document.getElementById(`container${country.country}`);
-  countryDiv.appendChild(headerSpecificCountryElement);
-  countryDiv.appendChild(footerSpecificCountryElement);
-  specificCountryDiv.appendChild(countryDiv);
-
+  var headerSpecificCountryElement = cloneElement(`container${country.country}`);
+  specificCountryDiv.appendChild(headerSpecificCountryElement);
+  specificCountryDiv.appendChild(footerSpecificCountryElement);
+  
+}
+/*@Purpose : clone an existing element
+ * @param total : id of the element to be removed 
+ */
+function cloneElement(name) {
+  var c = document.getElementById(name);
+  var clon = c.cloneNode(name);
+  return clon;
 }
