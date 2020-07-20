@@ -77,15 +77,9 @@ input:focus {
   grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
 }
 .specificCountry {
-  background-color: green;
+  margin-bottom: 20px;
   flex-direction: column;
   display: none;
-}
-.header {
-  background-color: rgb(209, 204, 209);
-  height: 50%;
-  padding: 50px;
-  text-align: center;
 }
 .footer {
   background-color: rgb(201, 201, 201);

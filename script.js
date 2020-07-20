@@ -93,6 +93,8 @@ function createComponents(country) {
   //Creating a div that contains the information of the country
   var div = document.createElement('div');
   div.className = 'style';
+  div.id = `container${country.country}`;
+
 
   //Creating the image 
   var countryImageElement = document.createElement('img');
@@ -189,25 +191,14 @@ function getByCountry(country) {
 function renderTotalCountry(country) {
 
   //Showing the element that contains the information of a specific country
-  document.querySelector(".specificCountry").style.display = "flex"
+  var specificCountryDiv = document.querySelector(".specificCountry");
+  specificCountryDiv.style.display = "flex"
   //Hiding the element that contains all countries
   document.querySelector(".AllCountries").style.display = "none";
 
-  
-  var headerSpecificCountryDiv = document.querySelector('.header');
-  var footerSpecificCountryDiv = document.querySelector('.footer');
-
-  var countryNameElement = document.createElement('h2');
-  countryNameElement.innerText = country.country;
-
-  var totalCasesElement = document.createElement('h3');
-  totalCasesElement.innerText = `Total de casos : ${formatNumber(country.cases)}`;
-
-  var totalDeathsElement = document.createElement('h3');
-  totalDeathsElement.innerText = `Total de muertes : ${formatNumber(country.deaths)}`;
-
-  var totalRecoveredElement = document.createElement('h3');
-  totalRecoveredElement.innerText = `Total de recuperados : ${formatNumber(country.recovered)}`;
+  //Creating all the elements that contains the country information
+  var footerSpecificCountryElement = document.createElement('div');
+  footerSpecificCountryElement.className = 'footer';
 
   var totalActiveCasesElement = document.createElement('h3');
   totalActiveCasesElement.innerText = `Total de casos activos : ${formatNumber(country.active)}`;
@@ -221,15 +212,15 @@ function renderTotalCountry(country) {
   var CriticalElement = document.createElement('h3');
   CriticalElement.innerText = `Pacientes en estado critico : ${formatNumber(country.critical)}`;
 
-  //adding the elements in the header element(div)
-  headerSpecificCountryDiv.appendChild(countryNameElement);
-  headerSpecificCountryDiv.appendChild(totalCasesElement);
-  headerSpecificCountryDiv.appendChild(totalDeathsElement);
-  headerSpecificCountryDiv.appendChild(totalRecoveredElement);
   //adding the elements in the footer element(div)
-  footerSpecificCountryDiv.appendChild(totalActiveCasesElement);
-  footerSpecificCountryDiv.appendChild(todayCasesElement);
-  footerSpecificCountryDiv.appendChild(todayDeathsElement);
-  footerSpecificCountryDiv.appendChild(CriticalElement);
+  footerSpecificCountryElement.appendChild(totalActiveCasesElement);
+  footerSpecificCountryElement.appendChild(todayCasesElement);
+  footerSpecificCountryElement.appendChild(todayDeathsElement);
+  footerSpecificCountryElement.appendChild(CriticalElement);
+
+  //Adding the information to the father div
+  var headerSpecificCountryElement = document.getElementById(`container${country.country}`);
+  specificCountryDiv.appendChild(headerSpecificCountryElement);
+  specificCountryDiv.appendChild(footerSpecificCountryElement);
 
 }
