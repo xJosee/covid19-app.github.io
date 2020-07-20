@@ -43,8 +43,7 @@ function getAllCountries() {
 function assignFlag(contrieName) {
   getFlag(contrieName).then((imageFlag) => {
     if (contrieName === "World") {
-      document.getElementById(contrieName).src =
-        "https://3.bp.blogspot.com/-HAHIYkwxoqc/UkHfRet_AgI/AAAAAAAADF8/JSkVDcTNlJE/s1600/banderas+mundo.png";
+      document.getElementById(contrieName).src = "assets/world_image.png";
     } else {
       document.getElementById(contrieName).src = imageFlag;
     }
