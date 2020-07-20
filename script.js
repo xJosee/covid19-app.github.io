@@ -196,6 +196,9 @@ function renderTotalCountry(country) {
   //Hiding the element that contains all countries
   document.querySelector(".AllCountries").style.display = "none";
 
+  //Creating a div that will contains the header and footer information
+  var countryDiv = document.createElement('div');
+
   //Creating all the elements that contains the country information
   var footerSpecificCountryElement = document.createElement('div');
   footerSpecificCountryElement.className = 'footer';
@@ -220,7 +223,8 @@ function renderTotalCountry(country) {
 
   //Adding the information to the father div
   var headerSpecificCountryElement = document.getElementById(`container${country.country}`);
-  specificCountryDiv.appendChild(headerSpecificCountryElement);
-  specificCountryDiv.appendChild(footerSpecificCountryElement);
+  countryDiv.appendChild(headerSpecificCountryElement);
+  countryDiv.appendChild(footerSpecificCountryElement);
+  specificCountryDiv.appendChild(countryDiv);
 
 }

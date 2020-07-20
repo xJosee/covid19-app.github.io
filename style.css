@@ -77,8 +77,9 @@ input:focus {
   grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
 }
 .specificCountry {
+  display: flex;
   margin-bottom: 20px;
-  flex-direction: column;
+  flex-direction: column-reverse;
   display: none;
 }
 .footer {
