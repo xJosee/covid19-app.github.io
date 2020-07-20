@@ -20,11 +20,11 @@ function getAllCountries() {
   var uri = "https://coronavirus-19-api.herokuapp.com/countries";
 
   fetch(uri)
-    .then((all) => {
-      return all.json();
+    .then((allCountries) => {
+      return allCountries.json();
     })
-    .then((data) =>
-      data.forEach((country) => {
+    .then((countries) =>
+     countries.forEach((country) => {
         //Create components with a country information
         createComponents(country);
 
