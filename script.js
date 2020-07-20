@@ -13,6 +13,8 @@ searchbox.addEventListener("keyup", function () {
   }
 });
 
+/*  @Purpose : get all countries
+	*/
 function getAllCountries() {
   var uri = "https://coronavirus-19-api.herokuapp.com/countries";
 
@@ -42,9 +44,9 @@ function getAllCountries() {
  	* @return : promise that contains the country's flag
 	*/
 function getFlag(countryName) {
-  var uri = 'https://restcountries.eu/rest/v2/name/';
+  var uri = `https://restcountries.eu/rest/v2/name/${countryName}`;
 
-  return fetch(uri+countryName)
+  return fetch(uri)
     .then(($country) => {
       return $country.json();
     })
@@ -109,7 +111,7 @@ function getTotalCases() {
       return total.json();
     })
     .then(renderTotal)
-    .catch((error) => console.log("Algo ha salido mal"));
+    .catch((error) => console.log("Algo ha salido mal "+error));
 }
 
 function renderTotal(total) {
@@ -119,7 +121,8 @@ function renderTotal(total) {
 }
 
 function getByCountry(country) {
-  fetch(`https://coronavirus-19-api.herokuapp.com/countries/${country}`)
+  var uri = `https://coronavirus-19-api.herokuapp.com/countries/${country}`;
+  fetch(uri)
     .then((totalCountry) => {
       return totalCountry.json();
     })
