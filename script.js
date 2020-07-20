@@ -1,6 +1,3 @@
-const totalCases = document.getElementById("_totalCases");
-const totalDeaths = document.getElementById("_totalDeaths");
-const totalRecovered = document.getElementById("_totalRecovered");
 
 window.onload = function () {
   getAllCountries();
@@ -24,7 +21,7 @@ function getAllCountries() {
       return allCountries.json();
     })
     .then((countries) =>
-     countries.forEach((country) => {
+    countries.forEach((country) => {
         //Create components with a country information
         createComponents(country);
 
@@ -40,16 +37,41 @@ function getAllCountries() {
     });
 }
 
-function assignFlag(contrieName) {
-  getFlag(contrieName).then((imageFlag) => {
-    if (contrieName === "World") {
-      document.getElementById(contrieName).src = "assets/world_image.png";
+/*  @Purpose : get the flag of a specific country
+ 	* @param countryName : name of the country
+ 	* @return : promise that contains the country's flag
+	*/
+function getFlag(countryName) {
+  var uri = 'https://restcountries.eu/rest/v2/name/';
+
+  return fetch(uri+countryName)
+    .then(($country) => {
+      return $country.json();
+    })
+    .then((data) => {
+      return data[0].flag;
+    })
+    .catch((error) => {
+      console.log("Algo ha salido mal " + error);
+    });
+}
+
+/*  @Purpose : get the value of the getFlag() function and assign the image to the country component
+ 	* @param countryName : name of the country
+	*/
+function assignFlag(countryName) {
+  getFlag(countryName).then((imageFlag) => {
+    if (countryName === "World") {
+      document.getElementById(countryName).src = "assets/world_image.png";
     } else {
-      document.getElementById(contrieName).src = imageFlag;
+      document.getElementById(countryName).src = imageFlag;
     }
   });
 }
 
+/*  @Purpose : create a component (div) with the country information
+ 	* @param country : json object with the country information
+	*/
 function createComponents(country) {
   document.getElementById("Countries").innerHTML +=
     '<div class="style">' +
@@ -71,21 +93,6 @@ function createComponents(country) {
     "</div>";
 }
 
-function getFlag(countryName) {
-
-  var uri = 'https://restcountries.eu/rest/v2/name/';
-
-  return fetch(uri+countryName)
-    .then(($country) => {
-      return $country.json();
-    })
-    .then((data) => {
-      return data[0].flag;
-    })
-    .catch((error) => {
-      console.log("Algo ha salido mal " + error);
-    });
-}
 
 function getCountryName(event) {
   if (event.keyCode == 13) {
@@ -106,9 +113,9 @@ function getTotalCases() {
 }
 
 function renderTotal(total) {
-  totalCases.innerText = new Intl.NumberFormat().format(total.cases);
-  totalDeaths.innerText = new Intl.NumberFormat().format(total.deaths);
-  totalRecovered.innerText = new Intl.NumberFormat().format(total.recovered);
+  document.getElementById("_totalCases").innerText = new Intl.NumberFormat().format(total.cases);
+  document.getElementById("_totalDeaths").innerText = new Intl.NumberFormat().format(total.deaths);
+  document.getElementById("_totalRecovered").innerText = new Intl.NumberFormat().format(total.recovered);
 }
 
 function getByCountry(country) {
