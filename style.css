@@ -70,12 +70,12 @@ input:focus {
   border-bottom: 3px solid #4f7aa5;
   background-color: rgba(255, 255, 255, 0.6);
 }
-.byCountry {
+.AllCountries {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
 }
-.contentCountry {
+.specificCountry {
   background-color: green;
   flex-direction: column;
   display: none;
@@ -86,7 +86,7 @@ input:focus {
   padding: 50px;
   text-align: center;
 }
-.info {
+.footer {
   background-color: rgb(201, 201, 201);
   height: 50%;
   padding : 50px;
@@ -116,23 +116,6 @@ input:focus {
   height: 100px;
 }
 
-h2 {
-  border-bottom: 3px solid #2c3e50;
-  font-weight: 900;
-  margin-bottom: 20px;
-}
-p {
-  font-size: 20px;
-}
-.CountryName {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-span {
-  font-weight: 400;
-  color: #083c70;
-}
 
 .loader-wrapper {
   display: flex;
