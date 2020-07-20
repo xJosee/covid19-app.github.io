@@ -75,24 +75,41 @@ function assignFlag(countryName) {
  	* @param country : json object with the country information
 	*/
 function createComponents(country) {
-  document.getElementById("Countries").innerHTML +=
-    '<div class="style">' +
-    '<img src="" id="' +
-    country.country +
-    '">' +
-    "<h2>" +
-    country.country +
-    "</h2>" +
-    "<p> <span>Total de casos</span> : " +
-    new Intl.NumberFormat().format(country.cases) +
-    "</p>" +
-    "<p> <span>Total de muertes</span> : " +
-    new Intl.NumberFormat().format(country.deaths) +
-    "</p>" +
-    "<p> <span>Total de recuperados</span> : " +
-    new Intl.NumberFormat().format(country.recovered) +
-    "</p>" +
-    "</div>";
+
+  //Creating a div that contains the information of the country
+  var div = document.createElement('div');
+  div.className = 'style';
+
+  //Creating the image 
+  var img = document.createElement('img');
+  img.id = country.country;
+
+  //Creating the title that contains the name of the country
+  var h2 = document.createElement('h2');
+  h2.innerHTML = country.country;
+
+  //Creating a paragraph that contains the total cases number
+  var totalCases = document.createElement('p');
+  totalCases.innerText = 'Total de casos : '+ country.cases;
+  
+  //Creating a paragraph that contains the total deaths number
+  var totalDeaths = document.createElement('p');
+  totalDeaths.innerText = 'Total de muertes : '+ country.deaths;
+
+  //Creating a paragraph that contains the total recovered number
+  var totalRecovered = document.createElement('p');
+  totalRecovered.innerText = 'Total de recuperados : '+ country.recovered;
+  
+  //Adding the div to the father div
+  document.getElementById("Countries").appendChild(div);
+  
+  //Adding the elementos the the div
+  div.appendChild(img);
+  div.appendChild(h2);
+  div.appendChild(totalCases);
+  div.appendChild(totalDeaths);
+  div.appendChild(totalRecovered);
+
 }
 
 
