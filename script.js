@@ -133,7 +133,9 @@ function createComponents(country) {
 */
 function getCountryName(event) {
   if (event.keyCode == 13) {
-    getByCountry(searchbox.value);
+    if(searchbox.value !== ''){
+      getByCountry(searchbox.value);
+    }
   }
 }
 
