@@ -4,9 +4,9 @@ let scrollY = 0;
 
 window.onload = () => {
   setTimeout(function () {
-    renderInitialCountries();
+    renderCountries();
     getTotalCases();
-  }, 3000);
+  }, 2500);
 };
 
 window.onscroll = function () {
@@ -21,7 +21,7 @@ morebtn.addEventListener("click", () => {
   morebtn.style.display = "none";
   document.querySelector('.loader-info').style.display = 'block';
   setTimeout(function () {
-    renderInitialCountries();
+    renderCountries();
   }, 1500);
 });
 
@@ -32,6 +32,7 @@ searchbox.addEventListener("keyup", () => {
   if (searchbox.value === "") {
     document.querySelector(".specificCountry").style.display = "none";
     document.querySelector(".AllCountries").style.display = "grid";
+    morebtn.style.display = 'block';
   }
 });
 
@@ -43,7 +44,10 @@ function formatNumber(number) {
   return new Intl.NumberFormat().format(number);
 }
 
-function renderInitialCountries() {
+/*
+ * @Purpose : call the methods to render
+ */
+function renderCountries() {
 
   let aux = itemsNumber;
   allCountries.then((data) => {
@@ -238,48 +242,47 @@ function renderTotalCountry(country) {
   document.querySelector(".AllCountries").style.display = "none";
   document.querySelector(".more").style.display = "none";
 
-  //Creating all the elements that contains the country information
+  //Creating the div header that contains the country information
+  var headerSpecificCountryElement = document.createElement("div");
+  headerSpecificCountryElement.className = "header";
+
+  //Creating the div footer that contains the country information
   var footerSpecificCountryElement = document.createElement("div");
   footerSpecificCountryElement.className = "footer";
 
-  var totalActiveCasesElement = document.createElement("h3");
-  totalActiveCasesElement.innerText = `Total de casos activos : ${formatNumber(
-    country.active
-  )}`;
+  //Calling the methods for inserting the information in the divs
+  informationHeader(headerSpecificCountryElement,country);
+  informationFooter(footerSpecificCountryElement,country);
 
-  var todayCasesElement = document.createElement("h3");
-  todayCasesElement.innerText = `Total de casos de hoy : ${formatNumber(
-    country.todayCases
-  )}`;
-
-  var todayDeathsElement = document.createElement("h3");
-  todayDeathsElement.innerText = `Total de muertes de hoy : ${formatNumber(
-    country.todayDeaths
-  )}`;
-
-  var CriticalElement = document.createElement("h3");
-  CriticalElement.innerText = `Pacientes en estado critico : ${formatNumber(
-    country.critical
-  )}`;
-
-  //adding the elements in the footer element(div)
-  footerSpecificCountryElement.appendChild(totalActiveCasesElement);
-  footerSpecificCountryElement.appendChild(todayCasesElement);
-  footerSpecificCountryElement.appendChild(todayDeathsElement);
-  footerSpecificCountryElement.appendChild(CriticalElement);
-
-  //Adding the information to the father div
-  var headerSpecificCountryElement = cloneElement(
-    `container${country.country}`
-  );
+  //Adding the elements to the father div
   specificCountryDiv.appendChild(headerSpecificCountryElement);
   specificCountryDiv.appendChild(footerSpecificCountryElement);
 }
-/*@Purpose : clone an existing element
- * @param total : id of the element to be removed
+
+/*
+ * @Purpose : insert the country info
+ * @param element : html element
+ * @param country : json Object with the country info
  */
-function cloneElement(name) {
-  var c = document.getElementById(name);
-  var clon = c.cloneNode(name);
-  return clon;
+function informationFooter(element,country){
+  element.innerHTML += `
+    <h3>Total de casos activos : ${formatNumber(country.active)}</h3>
+    <h3>Total de casos de hoy : ${formatNumber(country.todayCases)}</h3>
+    <h3>Total de muertes de hoy : ${formatNumber(country.todayDeaths)}</h3>
+    <h3>Total de cases criticos : ${formatNumber(country.critical)}</h3>
+  `;
+}
+
+/*
+ * @Purpose : insert the country info
+ * @param element : html element
+ * @param country : json Object with the country info
+ */
+function informationHeader(element,country){
+  element.innerHTML += `
+    <h1>${country.country}</h1>
+    <h3>Total de casos : ${formatNumber(country.cases)}</h3>
+    <h3>Total de muertes : ${formatNumber(country.deaths)}</h3>
+    <h3>Total de recuperados : ${formatNumber(country.recovered)}</h3>
+  `;
 }

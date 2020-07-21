@@ -79,14 +79,22 @@ input:focus {
 }
 .specificCountry {
   display: flex;
-  margin-bottom: 20px;
   flex-direction: column;
   display: none;
 }
+.header{
+  color: white;
+  padding: 25px;
+  background-color: #495b6d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .footer {
   background-color: rgb(201, 201, 201);
-  height: 50%;
-  padding: 50px;
+  padding: 25px;
   text-align: center;
 }
 .style {
@@ -105,7 +113,7 @@ input:focus {
 }
 .style:hover {
   color: #083c70;
-  transition: 0.7s;
+  transition: 0.5s ease-out;;
 }
 .style > img {
   margin-bottom: 20px;
@@ -116,6 +124,7 @@ input:focus {
   cursor: pointer;
   width: 200px;
   height: 50px;
+  font-size: 16px;
   border: none;
   color: white;
   outline: none;
@@ -126,6 +135,10 @@ input:focus {
   bottom: 0;
   margin: auto;
   margin-bottom: 20px;
+}
+.more:hover{
+  transition: 0.5s ease-in-out;
+  background-color: #414f64;
 }
 
 .loader-wrapper {
