@@ -1,13 +1,34 @@
-window.onload = function () {
-  getAllCountries();
-  getTotalCases();
+const allCountries = getAllCountries();
+let itemsNumber = 1;
+let scrollY = 0;
+
+window.onload = () => {
+  setTimeout(function () {
+    renderInitialCountries();
+    getTotalCases();
+  }, 3000);
+};
+
+window.onscroll = function () {
+  scrollY = window.scrollY;
 };
 
 const searchbox = document.querySelector(".search-box");
+const morebtn = document.querySelector(".more");
+
+morebtn.addEventListener("click", () => {
+  //document.querySelector(".loader-info").style.display = "block";
+  morebtn.style.display = "none";
+  document.querySelector('.loader-info').style.display = 'block';
+  setTimeout(function () {
+    renderInitialCountries();
+  }, 1500);
+});
+
 searchbox.addEventListener("keypress", getCountryName);
 
 //Verifing if the searchbox is empty
-searchbox.addEventListener("keyup", function () {
+searchbox.addEventListener("keyup", () => {
   if (searchbox.value === "") {
     document.querySelector(".specificCountry").style.display = "none";
     document.querySelector(".AllCountries").style.display = "grid";
@@ -22,33 +43,37 @@ function formatNumber(number) {
   return new Intl.NumberFormat().format(number);
 }
 
+function renderInitialCountries() {
+
+  let aux = itemsNumber;
+  allCountries.then((data) => {
+    for (let i = 0 + aux; i < 12 + aux; i++) {
+      //Create components with a country information
+      createComponents(data[i]);
+      //Asign an image to each country component
+      assignFlag(data[i].country);
+      itemsNumber++;
+    }
+  });
+
+  //Setting position 
+  window.scrollTo(0, scrollY);
+  //Hiding the show more button
+  morebtn.style.display = "block";
+  //Hiding login components loading page
+  document.querySelector('.loader-info').style.display = 'none';
+  //Hiding the loading page
+  document.querySelector(".loader-wrapper").style.display = "none";
+}
+
 /*
  * @Purpose : get all countries
  */
-function getAllCountries() {
+async function getAllCountries() {
   var uri = "https://coronavirus-19-api.herokuapp.com/countries";
-
-  fetch(uri)
-    .then((allCountries) => {
-      return allCountries.json();
-    })
-    .then((countries) =>
-      countries.forEach((country) => {
-        //Create components with a country information
-        createComponents(country);
-
-        //Asign an image to each country component
-        assignFlag(country.country);
-
-        //Hiding the loading page
-        document.querySelector(".loader-wrapper").style.display = "none";
-      })
-    )
-    .catch(() => {
-      var messageError =
-        "Error when trying to get the information from all the countries";
-      console.log(messageError);
-    });
+  let response = await fetch(uri);
+  let data = await response.json();
+  return data;
 }
 
 /*@Purpose : get the flag of a specific country
@@ -192,7 +217,7 @@ function getByCountry(country) {
 /*@Purpose : remove all childs of the element
  * @param total : element of the dom
  */
-function deleteChilds(element){
+function deleteChilds(element) {
   if (element.hasChildNodes()) {
     while (element.childNodes.length >= 1) {
       element.removeChild(element.firstChild);
@@ -208,9 +233,10 @@ function renderTotalCountry(country) {
   var specificCountryDiv = document.querySelector(".specificCountry");
   deleteChilds(specificCountryDiv);
   specificCountryDiv.style.display = "flex";
-  
+
   //Hiding the element that contains all countries
   document.querySelector(".AllCountries").style.display = "none";
+  document.querySelector(".more").style.display = "none";
 
   //Creating all the elements that contains the country information
   var footerSpecificCountryElement = document.createElement("div");
@@ -243,13 +269,14 @@ function renderTotalCountry(country) {
   footerSpecificCountryElement.appendChild(CriticalElement);
 
   //Adding the information to the father div
-  var headerSpecificCountryElement = cloneElement(`container${country.country}`);
+  var headerSpecificCountryElement = cloneElement(
+    `container${country.country}`
+  );
   specificCountryDiv.appendChild(headerSpecificCountryElement);
   specificCountryDiv.appendChild(footerSpecificCountryElement);
-  
 }
 /*@Purpose : clone an existing element
- * @param total : id of the element to be removed 
+ * @param total : id of the element to be removed
  */
 function cloneElement(name) {
   var c = document.getElementById(name);
