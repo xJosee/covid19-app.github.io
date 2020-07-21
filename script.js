@@ -51,7 +51,7 @@ function renderCountries() {
 
   let aux = itemsNumber;
   allCountries.then((data) => {
-    for (let i = 0 + aux; i < 12 + aux; i++) {
+    for (let i = aux; i < 12 + aux; i++) {
       //Create components with a country information
       createComponents(data[i]);
       //Asign an image to each country component
