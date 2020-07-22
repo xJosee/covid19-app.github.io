@@ -16,6 +16,19 @@ window.onscroll = function () {
 const searchbox = document.querySelector(".search-box");
 const morebtn = document.querySelector(".more");
 
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+function switchTheme(e) {
+    if (e.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }    
+}
+
+
 morebtn.addEventListener("click", () => {
   //document.querySelector(".loader-info").style.display = "block";
   morebtn.style.display = "none";
