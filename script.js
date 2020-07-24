@@ -1,11 +1,10 @@
 const allCountries = getAllCountries();
 let itemsNumber = 1;
 let scrollY = 0;
+let numberPage = 1;
 const searchbox = document.querySelector(".search-box");
 const morebtn = document.querySelector(".more");
-const toggleSwitch = document.querySelector(
-  '.theme-switch input[type="checkbox"]'
-);
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const linkedln = document.querySelector(".linkedln");
 const instagram = document.querySelector(".instagram");
 const gmail = document.querySelector(".gmail");
@@ -23,7 +22,7 @@ window.onscroll = function () {
   scrollY = window.scrollY;
   var scrollHeight = $(document).height();
   var scrollPosition = $(window).height() + $(window).scrollTop();
-  if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+  if (((scrollHeight - scrollPosition) / scrollHeight === 0)&&numberPage==1) {
     morebtn.style.display = "none";
     document.querySelector(".loader-info").style.display = "block";
     setTimeout(function () {
@@ -79,6 +78,7 @@ searchbox.addEventListener("keyup", () => {
     document.querySelector(".specificCountry").style.display = "none";
     document.querySelector(".AllCountries").style.display = "grid";
     morebtn.style.display = "block";
+    numberPage=1;
   }
 });
 
@@ -267,6 +267,7 @@ function deleteChilds(element) {
  * @param total : json Object with the country information
  */
 function renderTotalCountry(country) {
+  numberPage = 2;
   //Showing the element that contains the information of a specific country
   var specificCountryDiv = document.querySelector(".specificCountry");
   deleteChilds(specificCountryDiv);
