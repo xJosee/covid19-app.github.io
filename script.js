@@ -1,6 +1,14 @@
 const allCountries = getAllCountries();
 let itemsNumber = 1;
 let scrollY = 0;
+const searchbox = document.querySelector(".search-box");
+const morebtn = document.querySelector(".more");
+const toggleSwitch = document.querySelector(
+  '.theme-switch input[type="checkbox"]'
+);
+const linkedln = document.querySelector(".linkedln");
+const instagram = document.querySelector(".instagram");
+const gmail = document.querySelector(".gmail");
 
 window.onload = () => {
   setTimeout(function () {
@@ -13,39 +21,56 @@ window.onscroll = function () {
   scrollY = window.scrollY;
 };
 
-const searchbox = document.querySelector(".search-box");
-const morebtn = document.querySelector(".more");
+/* Social media redirect to */
+linkedln.addEventListener("click", () => {
+  window.open("https://www.linkedin.com/in/jose-luis-herrera-84b2b8195/");
+});
 
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-toggleSwitch.addEventListener('change', switchTheme, false);
+instagram.addEventListener("click", () => {
+  window.open("https://www.instagram.com/jose.lhm");
+});
 
-function switchTheme(e) {
-    if (e.target.checked) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-    else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }    
-}
+gmail.addEventListener("click", () => {
+  window.open("https://mail.google.com/mail/u/0/#inbox?compose=new");
+});
 
+toggleSwitch.addEventListener("change", (e) => {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    document.querySelector(".dark-mode-title").textContent = "Modo Claro";
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    document.querySelector(".dark-mode-title").textContent = "Modo Oscuro";
+  }
+});
 
+/*Show 12 more countries*/
 morebtn.addEventListener("click", () => {
-  //document.querySelector(".loader-info").style.display = "block";
+  
   morebtn.style.display = "none";
-  document.querySelector('.loader-info').style.display = 'block';
+  document.querySelector(".loader-info").style.display = "block";
   setTimeout(function () {
     renderCountries();
   }, 1500);
 });
 
-searchbox.addEventListener("keypress", getCountryName);
+/*@Purpose : call the function that obtains the information of a country getByCountry()
+ * @param event : event of the searchbox
+ */
+searchbox.addEventListener("keypress", (event)=>{
+  if (event.keyCode == 13) {
+    if (searchbox.value !== "") {
+      getByCountry(searchbox.value);
+    }
+  }
+});
 
 //Verifing if the searchbox is empty
 searchbox.addEventListener("keyup", () => {
   if (searchbox.value === "") {
     document.querySelector(".specificCountry").style.display = "none";
     document.querySelector(".AllCountries").style.display = "grid";
-    morebtn.style.display = 'block';
+    morebtn.style.display = "block";
   }
 });
 
@@ -61,7 +86,6 @@ function formatNumber(number) {
  * @Purpose : call the methods to render
  */
 function renderCountries() {
-
   let aux = itemsNumber;
   allCountries.then((data) => {
     for (let i = aux; i < 12 + aux; i++) {
@@ -73,12 +97,12 @@ function renderCountries() {
     }
   });
 
-  //Setting position 
+  //Setting position
   window.scrollTo(0, scrollY);
   //Hiding the show more button
   morebtn.style.display = "block";
   //Hiding login components loading page
-  document.querySelector('.loader-info').style.display = 'none';
+  document.querySelector(".loader-info").style.display = "none";
   //Hiding the loading page
   document.querySelector(".loader-wrapper").style.display = "none";
 }
@@ -172,17 +196,6 @@ function createComponents(country) {
   div.appendChild(totalRecoveredElement);
 }
 
-/*@Purpose : call the function that obtains the information of a country getByCountry()
- * @param event : event of the searchbox
- */
-function getCountryName(event) {
-  if (event.keyCode == 13) {
-    if (searchbox.value !== "") {
-      getByCountry(searchbox.value);
-    }
-  }
-}
-
 /*
  * @Purpose : get the information of the world
  */
@@ -264,8 +277,8 @@ function renderTotalCountry(country) {
   footerSpecificCountryElement.className = "footer";
 
   //Calling the methods for inserting the information in the divs
-  informationHeader(headerSpecificCountryElement,country);
-  informationFooter(footerSpecificCountryElement,country);
+  informationHeader(headerSpecificCountryElement, country);
+  informationFooter(footerSpecificCountryElement, country);
 
   //Adding the elements to the father div
   specificCountryDiv.appendChild(headerSpecificCountryElement);
@@ -277,7 +290,7 @@ function renderTotalCountry(country) {
  * @param element : html element
  * @param country : json Object with the country info
  */
-function informationFooter(element,country){
+function informationFooter(element, country) {
   element.innerHTML += `
     <h3>Total de casos activos : ${formatNumber(country.active)}</h3>
     <h3>Total de casos de hoy : ${formatNumber(country.todayCases)}</h3>
@@ -291,7 +304,7 @@ function informationFooter(element,country){
  * @param element : html element
  * @param country : json Object with the country info
  */
-function informationHeader(element,country){
+function informationHeader(element, country) {
   element.innerHTML += `
     <h1>${country.country}</h1>
     <h3>Total de casos : ${formatNumber(country.cases)}</h3>
