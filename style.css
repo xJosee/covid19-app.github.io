@@ -37,7 +37,7 @@ p {
 .container {
   height: 100vh;
   display: grid;
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px 20px 40px;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: 1fr;
   grid-template-areas: "dark" "Total" "Search" "Content" "footer";
@@ -261,9 +261,6 @@ input:focus {
   align-items: center;
   justify-content: right;
   grid-area: dark;
-}
-.dark-mode-title {
-  color: var(--color);
 }
 .theme-switch-wrapper {
   position: relative;

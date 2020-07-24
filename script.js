@@ -37,10 +37,8 @@ gmail.addEventListener("click", () => {
 toggleSwitch.addEventListener("change", (e) => {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
-    document.querySelector(".dark-mode-title").textContent = "Modo Claro";
   } else {
     document.documentElement.setAttribute("data-theme", "light");
-    document.querySelector(".dark-mode-title").textContent = "Modo Oscuro";
   }
 });
 
