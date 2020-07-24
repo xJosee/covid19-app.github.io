@@ -17,8 +17,19 @@ window.onload = () => {
   }, 2500);
 };
 
+let cont = 0;
+
 window.onscroll = function () {
   scrollY = window.scrollY;
+  var scrollHeight = $(document).height();
+  var scrollPosition = $(window).height() + $(window).scrollTop();
+  if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+    morebtn.style.display = "none";
+    document.querySelector(".loader-info").style.display = "block";
+    setTimeout(function () {
+      renderCountries();
+    }, 1500);
+  }
 };
 
 /* Social media redirect to */
@@ -44,7 +55,6 @@ toggleSwitch.addEventListener("change", (e) => {
 
 /*Show 12 more countries*/
 morebtn.addEventListener("click", () => {
-  
   morebtn.style.display = "none";
   document.querySelector(".loader-info").style.display = "block";
   setTimeout(function () {
@@ -55,7 +65,7 @@ morebtn.addEventListener("click", () => {
 /*@Purpose : call the function that obtains the information of a country getByCountry()
  * @param event : event of the searchbox
  */
-searchbox.addEventListener("keypress", (event)=>{
+searchbox.addEventListener("keypress", (event) => {
   if (event.keyCode == 13) {
     if (searchbox.value !== "") {
       getByCountry(searchbox.value);
