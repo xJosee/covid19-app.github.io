@@ -282,7 +282,7 @@ function renderTotalCountry(country) {
 
   //Creating the div footer that contains the country information
   var footerSpecificCountryElement = document.createElement("div");
-  footerSpecificCountryElement.className = "footer";
+  footerSpecificCountryElement.className = "footerDiv";
 
   //Calling the methods for inserting the information in the divs
   informationHeader(headerSpecificCountryElement, country);

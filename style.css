@@ -28,6 +28,7 @@
 body {
   background-color: var(--background);
   font-family: "Montserrat", sans-serif;
+  margin-bottom: 20px;
 }
 h3,
 p {
@@ -39,7 +40,6 @@ p {
   display: grid;
   padding: 10px 20px 20px 20px;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: 1fr;
   grid-template-areas: "dark" "Total" "Search" "Content" "footer";
 }
 
@@ -116,7 +116,7 @@ input:focus {
   align-items: center;
   text-align: center;
 }
-.footer {
+.footerDiv {
   color: var(--color);
   background-color: var(--footerDiv);
   padding: 25px;
@@ -161,10 +161,12 @@ input:focus {
 .footer {
   color: white;
   background-color: var(--totalColor);
-  margin-bottom: 20px;
+  padding: 25px;
   grid-area: footer;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  margin-bottom: 20px;
 }
 .social-media {
   display: flex;
