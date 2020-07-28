@@ -1,73 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Covid19-Tracker</title>
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container">
-      <!--Header-->
-      
-      <div class="dark-mode">
-        <img class="light-mode-img" src="./assets/light.png" height="30" width="30">
-        <div class="theme-switch-wrapper">
-          <label class="theme-switch" for="checkbox">
+        <!--Header-->
+
+        <div class="dark-mode">
+            <img class="light-mode-img" src="./assets/light.png" height="30" width="30">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
             <input type="checkbox" id="checkbox" />
             <div class="slider round"></div>
           </label>
+            </div>
+            <img class="dark-mode-img" src="./assets/dark.png" height="30" width="30">
         </div>
-        <img class="dark-mode-img" src="./assets/dark.png" height="30" width="30">
-      </div>
-      <div class="total">
-        <div class="totalCases">
-          <img
-            src="assets/totalcases.png"
-            alt="totalcases"
-            width="70"
-            height="70"
-          />
-          <h3>Total de casos</h3>
-          <p id="_totalCases"></p>
+        <div class="total">
+            <div class="totalCases">
+                <img src="assets/totalcases.png" alt="totalcases" width="70" height="70" />
+                <h3>Total de casos</h3>
+                <p id="_totalCases"></p>
+            </div>
+            <div class="totalDeaths">
+                <img src="assets/deaths.png" alt="deaths" width="70" height="70" />
+                <h3>Total de Muertes</h3>
+                <p id="_totalDeaths"></p>
+            </div>
+            <div class="totalRecovered">
+                <img src="assets/recovered.png" alt="recovered" width="70" height="70" />
+                <h3>Total de Recuperados</h3>
+                <p id="_totalRecovered"></p>
+            </div>
         </div>
-        <div class="totalDeaths">
-          <img src="assets/deaths.png" alt="deaths" width="70" height="70" />
-          <h3>Total de Muertes</h3>
-          <p id="_totalDeaths"></p>
+        <!--Search Box-->
+        <div class="search">
+            <input type="text" class="search-box" placeholder="Buscar por país..." />
         </div>
-        <div class="totalRecovered">
-          <img
-            src="assets/recovered.png"
-            alt="recovered"
-            width="70"
-            height="70"
-          />
-          <h3>Total de Recuperados</h3>
-          <p id="_totalRecovered"></p>
-        </div>
-      </div>
-      <!--Search Box-->
-      <div class="search">
-        <input
-          type="text"
-          class="search-box"
-          placeholder="Buscar por país..."
-        />
-      </div>
-      <div class="content">
-        <!---All Countries-->
-        <div class="AllCountries" id="Countries"></div>
-        <!---Especific Country-->
-        <div class="specificCountry"></div>
-        <button class="more">Ver Más</button>
-        <div class="loader-info">
-          <span class="loader2">
+        <div class="content">
+            <!---All Countries-->
+            <div class="AllCountries" id="Countries"></div>
+            <!---Especific Country-->
+            <div class="specificCountry"></div>
+            <button class="more">Ver Más</button>
+            <div class="loader-info">
+                <span class="loader2">
             <span class="loader-inner2">
               <img
                 src="assets/totalcases.png"
@@ -76,49 +61,30 @@
                 height="50"
               />
             </span>
-          </span>
+                </span>
+            </div>
         </div>
-      </div>
-      <div class="footer">
-        <div class="social-media">
-          <div class="linkedln">
-            <img
-              class="social"
-              src="assets/linkedin.png"
-              alt="totalcases"
-              width="50"
-              height="50"
-            />
-            <p>Linkedln</p>
-          </div>
-          <div class="instagram">
-            <img
-              class="social"
-              src="assets/instagram.png"
-              alt="totalcases"
-              width="50"
-              height="50"
-              href="www.google.com"
-            />
-            <p>Instagram</p>
-          </div>
-          <div class="gmail">
-            <img
-              class="social"
-              src="assets/gmail.png"
-              alt="totalcases"
-              width="50"
-              height="50"
-            />
-            <p>Gmail</p>
-          </div>
+        <div class="footer">
+            <div class="social-media">
+                <div class="linkedln">
+                    <img class="social" src="assets/linkedin.png" alt="totalcases" width="50" height="50" />
+                    <p>Linkedln</p>
+                </div>
+                <div class="instagram">
+                    <img class="social" src="assets/instagram.png" alt="totalcases" width="50" height="50" href="www.google.com" />
+                    <p>Instagram</p>
+                </div>
+                <div class="gmail">
+                    <img class="social" src="assets/gmail.png" alt="totalcases" width="50" height="50" />
+                    <p>Gmail</p>
+                </div>
+            </div>
+            <p class="copyright">Copyright © 2020 All Rights Reserved by Jose Luis Herrera.</p>
         </div>
-        <p class="copyright" >Copyright © 2020 All Rights Reserved by Jose Luis Herrera.</p>
-      </div>
     </div>
     <div class="loader-wrapper">
-      <h1 class="title-loader">Coronavirus tracker</h1>
-      <span class="loader">
+        <h1 class="title-loader">Coronavirus tracker</h1>
+        <span class="loader">
         <span class="loader-inner">
           <img
             src="assets/totalcases.png"
@@ -127,8 +93,9 @@
             height="70"
           />
         </span>
-      </span>
+        </span>
     </div>
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
