@@ -6,37 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Covid19-Tracker</title>
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <!--Header-->
-
+        <!-- DarkMode-->
         <div class="dark-mode">
-            <img class="light-mode-img" src="./assets/light.png" height="30" width="30">
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-          </label>
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
             </div>
-            <img class="dark-mode-img" src="./assets/dark.png" height="30" width="30">
         </div>
+        <!----Header -->
         <div class="total">
-            <div class="totalCases">
-                <img src="assets/totalcases.png" alt="totalcases" width="70" height="70" />
+            <div class="total-container">
+                <img src="assets/totalcases.png" alt="totalcases" width="40" height="40" />
                 <h3>Total de casos</h3>
                 <p id="_totalCases"></p>
             </div>
-            <div class="totalDeaths">
-                <img src="assets/deaths.png" alt="deaths" width="70" height="70" />
+            <div class="total-container">
+                <img src="assets/deaths.png" alt="deaths" width="40" height="40" />
                 <h3>Total de Muertes</h3>
                 <p id="_totalDeaths"></p>
             </div>
-            <div class="totalRecovered">
-                <img src="assets/recovered.png" alt="recovered" width="70" height="70" />
+            <div class="total-container">
+                <img src="assets/recovered.png" alt="recovered" width="40" height="40" />
                 <h3>Total de Recuperados</h3>
                 <p id="_totalRecovered"></p>
             </div>
@@ -45,25 +44,29 @@
         <div class="search">
             <input type="text" class="search-box" placeholder="Buscar por país..." />
         </div>
+        <!------ Content -->
         <div class="content">
             <!---All Countries-->
-            <div class="AllCountries" id="Countries"></div>
-            <!---Especific Country-->
-            <div class="specificCountry"></div>
+            <div class="AllCountries" id="Countries">
+
+            </div>
             <button class="more">Ver Más</button>
             <div class="loader-info">
                 <span class="loader2">
-            <span class="loader-inner2">
-              <img
-                src="assets/totalcases.png"
-                alt="totalcases"
-                width="50"
-                height="50"
-              />
-            </span>
+                    <span class="loader-inner2">
+                        <img src="assets/totalcases.png" alt="totalcases" width="50" height="50" />
+                    </span>
                 </span>
             </div>
         </div>
+        <!---Especific Country-->
+        <div class="modal">
+            
+        </div>
+        <div class="modal-country">
+            <button class="close-modal">Close</button>
+        </div>
+        <!--- Footer-->
         <div class="footer">
             <div class="social-media">
                 <div class="linkedln">
@@ -71,7 +74,8 @@
                     <p>Linkedln</p>
                 </div>
                 <div class="instagram">
-                    <img class="social" src="assets/instagram.png" alt="totalcases" width="50" height="50" href="www.google.com" />
+                    <img class="social" src="assets/instagram.png" alt="totalcases" width="50" height="50"
+                        href="www.google.com" />
                     <p>Instagram</p>
                 </div>
                 <div class="gmail">
@@ -85,14 +89,9 @@
     <div class="loader-wrapper">
         <h1 class="title-loader">Coronavirus tracker</h1>
         <span class="loader">
-        <span class="loader-inner">
-          <img
-            src="assets/totalcases.png"
-            alt="totalcases"
-            width="70"
-            height="70"
-          />
-        </span>
+            <span class="loader-inner">
+                <img src="assets/totalcases.png" alt="totalcases" width="70" height="70" />
+            </span>
         </span>
     </div>
     <script src="script.js"></script>

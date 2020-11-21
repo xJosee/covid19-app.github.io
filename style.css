@@ -52,13 +52,13 @@ p {
     background-color: var(--totalColor);
     color: white;
     grid-area: Total;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.totalCases,
-.totalDeaths,
-.totalRecovered {
+.total-container {
     margin: 15px;
     display: flex;
     justify-content: center;
@@ -71,36 +71,28 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 0;
+    padding: 25px 0 30px 0;
 }
+.search-box{
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgb(226, 226, 226);
+    padding: 0 20px;
+    border: none;
+    border-bottom: 2px solid #34495e;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+    color: #34495e;
+}
+::-webkit-input-placeholder { color: #34495e; } 
 
 .content {
     grid-area: Content;
     display: grid;
 }
 
-input {
-    width: 100%;
-    max-width: 280px;
-    padding: 10px 15px;
-    border: none;
-    outline: none;
-    border-bottom: 3px solid #2c3e50;
-    color: var(--color);
-    font-size: 20px;
-    font-weight: 300;
-    transition: 0.2s ease-out;
-    background-color: var(--search);
-}
-
-input::-webkit-input-placeholder {
-    color: var(--color);
-}
-
-input:focus {
-    color: (var(--color));
-    border-bottom: 3px solid #4f7aa5;
-}
 
 .AllCountries {
     display: grid;
@@ -108,13 +100,27 @@ input:focus {
     grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
     margin-bottom: 20px;
 }
-
-.specificCountry {
-    display: flex;
-    flex-direction: column;
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:black;
+    opacity: 0.5;
     display: none;
 }
-
+.modal-country{
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(207, 207, 207);
+    display: none;
+    text-align: right;
+}
 .header {
     color: white;
     padding: 25px;
@@ -134,7 +140,7 @@ input:focus {
 }
 
 .style {
-    border-radius: 0px;
+    cursor: pointer;
     box-shadow: 5px 5px 5px #f2f2f2, -5px -5px 5px var(--varColor);
     color: var(--color);
     display: flex;
@@ -144,6 +150,12 @@ input:focus {
     flex-direction: column;
     padding: 50px;
     background-color: var(--countryDivColor);
+    animation: normal;
+}
+.style:hover{
+    transition: 1s;
+    background-color: red;
+    background-color: #d4d4d4;
 }
 
 .style>img {
@@ -292,14 +304,14 @@ input:focus {
 .dark-mode {
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: flex-end;
     grid-area: dark;
 }
 
 .theme-switch-wrapper {
     position: relative;
-    width: 60px;
-    height: 34px;
+    width: 50px;
+    height: 25px;
     margin: 0 10px 10px 10px;
 }
 
@@ -325,13 +337,13 @@ input:focus {
 
 .slider:before {
     background-color: #fff;
-    bottom: 4px;
+    bottom: 3px;
     content: "";
-    height: 26px;
+    height: 20px;
     left: 4px;
     position: absolute;
     transition: 0.4s;
-    width: 26px;
+    width: 20px;
 }
 
 input:checked+.slider {
@@ -339,11 +351,11 @@ input:checked+.slider {
 }
 
 input:checked+.slider:before {
-    transform: translateX(26px);
+    transform: translateX(20px);
 }
 
 .slider.round {
-    border-radius: 34px;
+    border-radius: 25px;
 }
 
 .slider.round:before {

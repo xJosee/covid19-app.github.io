@@ -9,6 +9,9 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 const linkedln = document.querySelector(".linkedln");
 const instagram = document.querySelector(".instagram");
 const gmail = document.querySelector(".gmail");
+const modal = document.querySelector('.modal');
+const modalCountry = document.querySelector('.modal-country');
+const closeModal = document.querySelector('.close-modal');
 
 let itemsNumber = 1;
 let scrollY = 0;
@@ -93,6 +96,11 @@ searchbox.addEventListener("keyup", () => {
     }
 });
 
+closeModal.addEventListener('click',()=>{
+    modal.style.display = 'none';
+    modalCountry.style.display = 'none';
+    document.body.style.overflow = 'scroll';
+});
 
 
 
@@ -213,6 +221,13 @@ function createComponents(country) {
     div.appendChild(totalCasesElement);
     div.appendChild(totalDeathsElement);
     div.appendChild(totalRecoveredElement);
+
+    /* Adding event listener */
+    div.addEventListener(('click'),()=>{
+        modal.style.display = 'block';
+        modalCountry.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
 }
 
 /*
