@@ -222,11 +222,18 @@ function createComponents(country) {
     div.appendChild(totalDeathsElement);
     div.appendChild(totalRecoveredElement);
 
+    
     /* Adding event listener */
     div.addEventListener(('click'),()=>{
-        modal.style.display = 'block';
-        modalCountry.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        getFlag(`${country.country}`).then((imageFlag) => {
+            const text = ``;
+            swal({
+                title: `${country.country}`,
+                text: "You clicked the button!",
+                icon: `${imageFlag}`,
+                button: "close",
+            });
+        });
     });
 }
 
