@@ -47,7 +47,7 @@ window.onscroll = () => {
 
 /* Social media redirect to */
 linkedln.addEventListener("click", () => {
-    window.open("https://www.linkedin.com/in/jose-luis-herrera-84b2b8195/");
+    //window.open("https://www.linkedin.com/in/jose-luis-herrera-84b2b8195/");
 });
 
 instagram.addEventListener("click", () => {
