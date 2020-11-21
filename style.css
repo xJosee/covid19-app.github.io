@@ -342,10 +342,28 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
+.swal-modal{
+    width:350px !important;
+    background-color: var(--countryDivColor) !important;
+}
+.swal-text, .swal-title{
+    color: var(--color) !important;
+}
+.swal-button{
+    background-color: var(--headerDiv) !important;
+}
+.swal-icon img{
+    width: 80% !important;
+}
+
 @media all 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
     .swal-modal{
         width:350px !important;
+        background-color: var(--countryDivColor) !important;
+    }
+    .swal-text,.swal-title{
+        color: var(--color) !important;
     }
 }
