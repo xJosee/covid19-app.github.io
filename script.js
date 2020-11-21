@@ -217,7 +217,7 @@ function createComponents(country) {
             const totalCases = `Total de Casos : ${formatNumber(country.cases)}`;
             const totalDeaths = `Total de muertes : ${formatNumber(country.deaths)}`;
             const totalRecovered = `Total de recuperados : ${formatNumber(country.recovered)}`;
-            const todayCases = `Cases del día de hoy : ${formatNumber(country.todayCases)}`;
+            const todayCases = `Casos del día de hoy : ${formatNumber(country.todayCases)}`;
             const todayDeaths = `Total de muertes de hoy : ${formatNumber(country.todayDeaths)}`;
             swal({
                 title: `${country.country}`,
