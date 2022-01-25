@@ -89,6 +89,7 @@ p {
 ::-webkit-input-placeholder { color: #34495e; } 
 
 .content {
+    margin-top: 20px;
     grid-area: Content;
     display: grid;
 }

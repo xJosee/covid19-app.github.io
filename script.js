@@ -2,7 +2,6 @@
  *  DECLARATIONS
  */
 
-const allCountries = getAllCountries();
 const searchbox = document.querySelector(".search-box");
 const morebtn = document.querySelector(".more");
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
@@ -12,32 +11,15 @@ const gmail = document.querySelector(".gmail");
 
 let itemsNumber = 1;
 let scrollY = 0;
-let numberPage = 1;
 
 /**
  *  WINDOWS PROPERTIES
  */
 
-window.onload = () => {
-    setTimeout(() => {
-        renderCountries();
-        getTotalCases();
-    }, 2500);
+window.onload = async () => {
+    await renderCountries();
+    await getTotalCases();
 };
-
-window.onscroll = () => {
-    scrollY = window.scrollY;
-    var scrollHeight = $(document).height();
-    var scrollPosition = $(window).height() + $(window).scrollTop();
-    if (((scrollHeight - scrollPosition) / scrollHeight === 0) && numberPage == 1) {
-        morebtn.style.display = "none";
-        document.querySelector(".loader-info").style.display = "block";
-        setTimeout(function() {
-            renderCountries();
-        }, 1500);
-    }
-};
-
 /**
  * EVENT LISTENERS
  */
@@ -89,7 +71,6 @@ searchbox.addEventListener("keyup", () => {
         document.querySelector(".specificCountry").style.display = "none";
         document.querySelector(".AllCountries").style.display = "grid";
         morebtn.style.display = "block";
-        numberPage = 1;
     }
 });
 
@@ -104,20 +85,17 @@ function formatNumber(number) {
 /*
  * @Purpose : call the methods to render
  */
-function renderCountries() {
+async function renderCountries() {
     let aux = itemsNumber;
-    allCountries.then((data) => {
-        for (let i = aux; i < 12 + aux; i++) {
-            //Create components with a country information
-            createComponents(data[i]);
-            //Asign an image to each country component
-            assignFlag(data[i].country);
-            itemsNumber++;
-        }
-    });
+    const countries = await getAllCountries();
+    for (let i = aux; i < 12 + aux; i++) {
+        //Create components with a country information
+        createComponents(countries[i]);
+        //Asign an image to each country component
+        await assignFlag(countries[i].country);
+        itemsNumber++;
+    }
 
-    //Setting position
-    window.scrollTo(0, scrollY);
     //Hiding the show more button
     morebtn.style.display = "block";
     //Hiding login components loading page
@@ -140,29 +118,19 @@ async function getAllCountries() {
  * @param countryName : name of the country
  * @return : promise that contains the country's flag
  */
-function getFlag(countryName) {
-    var uri = `https://restcountries.eu/rest/v2/name/${countryName}`;
-
-    return fetch(uri)
-        .then(($country) => {
-            return $country.json();
-        })
-        .then((data) => {
-            return data[0].flag;
-        })
-        .catch((error) => {
-            var messageError = "Error when trying to get the image";
-            console.log(messageError);
-        });
+async function getFlag(countryName) {
+    const uri = `https://restcountries.com/v3.1/name/${countryName}`;
+    const response = await fetch(uri);
+    const data = await response.json();
+    return data[0].flags.svg;
 }
 
 /*@Purpose : get the value of the getFlag() function and assign the image to the country component
  * @param countryName : name of the country
  */
-function assignFlag(countryName) {
-    getFlag(countryName).then((imageFlag) => {
-        document.getElementById(countryName).src = imageFlag;
-    });
+async function assignFlag(countryName) {
+    const flag = await getFlag(countryName);
+    document.getElementById(countryName).src = flag;
 }
 
 /*@Purpose : create a component (div) with the country information
@@ -232,19 +200,11 @@ function createComponents(country) {
 /*
  * @Purpose : get the information of the world
  */
-function getTotalCases() {
+async function getTotalCases() {
     var uri = "https://coronavirus-19-api.herokuapp.com/all";
-
-    fetch(uri)
-        .then((total) => {
-            return total.json();
-        })
-        .then(renderTotal)
-        .catch(() => {
-            var messageError =
-                "Error when trying to get the information from all the world";
-            console.log(messageError);
-        });
+    const response = await fetch(uri);
+    const data = await response.json();
+    renderTotal(data);
 }
 
 /*@Purpose : rendering the world information on the dom
@@ -292,7 +252,6 @@ function deleteChilds(element) {
  * @param total : json Object with the country information
  */
 function renderTotalCountry(country) {
-    numberPage = 2;
     //Showing the element that contains the information of a specific country
     var specificCountryDiv = document.querySelector(".specificCountry");
     deleteChilds(specificCountryDiv);
