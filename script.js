@@ -2,7 +2,6 @@
  *  DECLARATIONS
  */
 
-const searchbox = document.querySelector(".search-box");
 const morebtn = document.querySelector(".more");
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const linkedln = document.querySelector(".linkedln");
@@ -54,25 +53,6 @@ morebtn.addEventListener("click", () => {
     }, 1500);
 });
 
-/*@Purpose : call the function that obtains the information of a country getByCountry()
- * @param event : event of the searchbox
- */
-searchbox.addEventListener("keypress", (event) => {
-    if (event.keyCode == 13) {
-        if (searchbox.value !== "") {
-            getByCountry(searchbox.value);
-        }
-    }
-});
-
-//Verifing if the searchbox is empty
-searchbox.addEventListener("keyup", () => {
-    if (searchbox.value === "") {
-        document.querySelector(".specificCountry").style.display = "none";
-        document.querySelector(".AllCountries").style.display = "grid";
-        morebtn.style.display = "block";
-    }
-});
 
 /*
  * @Purpose : formatting a comma-separated number
@@ -122,7 +102,7 @@ async function getFlag(countryName) {
     const uri = `https://restcountries.com/v3.1/name/${countryName}`;
     const response = await fetch(uri);
     const data = await response.json();
-    return data[0].flags.svg;
+    return Array.isArray(data) && data[0] && data[0].flags.svg;
 }
 
 /*@Purpose : get the value of the getFlag() function and assign the image to the country component
